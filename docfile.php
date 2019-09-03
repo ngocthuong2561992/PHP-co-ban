@@ -20,9 +20,8 @@
                 $noidung =fgets($file,1000);
                 echo nl2br($noidung);
             }
-
 		} else {
-            echo "Hay nhap du ten file va noi dung"
+            echo "Hay nhap du ten file va noi dung";
         }
 	}
 	?>
