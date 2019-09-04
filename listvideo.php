@@ -28,7 +28,7 @@
         $query = "Select *from tblvideo order by ordernum DESC";
         $result = mysqli_query($dbc,$query);
         kt_query($result,$query);
-        while($video= mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+        while($video = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
         ?> 
         <tr>
             <td><?php echo $video['id']?></td>
@@ -38,14 +38,14 @@
             <td>
                 <?php
                 if ($video['status'] == 1) {
-                    echo "Hien thi";
+                  echo "Hien thi";
                 } else {
-                    echo "Khong Hien thi";
+                  echo "Khong Hien thi";
                 }
                 ?>
             </td>
-            <td><a href=""><img src=""/></a></td>
-            <td><a href=""><img src=""/></a></td>
+            <td><a href="editvideo.php?id=<?php echo $video['id']?>"><img width="16" src="./img/edit.png"/></a></td>
+            <td><a href="deletevideo.php?id=<?php echo $video['id']?>" onclick="return confrim('Ban co thuc su muon xoa khong');"><img width="16" src="./img/delete.png"/></a></td>
         </tr>  
         <?php
         }
