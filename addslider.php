@@ -25,28 +25,29 @@
         } else {
             $title = $_POST['title'];
         }
-        if (empty($_POST['link'])) {
-            $errors[] = 'link';
-        } else {
-            $errors = $_POST['link'];
-        }
         if (empty($_POST['ordernum'])) {
             $ordernum = 0;
         } else {
             $ordernum = $_POST['ordernum'];
         }
-        $status = $_POST['status'];
-        //Upload anh
-        if(($_FILES['img']['type']!="image/gif") 
-                  && ($_FILES['img']['type']!="image/png")
-                  && ($_FILES['img']['type']!="image/jpeg")
-                  && ($_FILES['img']['type']!="image/jpg")
-                  ){
 
-        }
+        $status = $_POST['status'];
+        $link = $_POST['link'];
         if (empty($errors)) 
         {
-            $query = "INSERT INTO tblVideo(title,link,ordernum,status) VALUES('{$title}','{$link}',$ordernum,$status)";
+        //Upload anh
+        if(($_FILES['img']['type']!="image/gif")  && ($_FILES['img']['type']!="image/png")
+        && ($_FILES['img']['type']!="image/jpeg") && ($_FILES['img']['type']!="image/jpg")){
+           $message = "File khong dung dinh dang";
+          } else if ($_FILES['img']['size']>100000) {
+            $message ="Kich thuoc nho hon 1MB";
+          } else if ($_FILES['img']['size']=''){
+             $img = $_FILES['img']['name'];
+             $link_img = 'upload/'.$img;
+             move_uploaded_file($_FILES['img']['tmp_name'],"../upload/".$img);
+            }
+            $query = "INSERT INTO tblSlider(title,anh,link,ordernum,status) 
+            VALUES('{$title}','{$link_img}','{$link}',$ordernum,$status)";
             $result = mysqli_query($dbc,$query);
             kt_query($result,$query);
             if (mysqli_affected_rows($dbc)===1) {

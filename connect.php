@@ -1,6 +1,6 @@
 <?php
 //Ket noi co so du lieu
-$dbc = mysqli_connect('localhost','root','root','thietkeweb');
+$dbc = mysqli_connect('localhost','root','','thietkeweb');
 if (!$dbc)
 {
     echo "Ket noi khong thanh cong";
